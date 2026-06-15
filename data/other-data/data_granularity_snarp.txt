@@ -1,0 +1,1188 @@
+glob found 54 files in /content/drive/MyDrive/Colab Notebooks/snarp_analysis/college_football/transcripts
+COUNTS
+{'mild_profanity': 6, 'strong_profanity': 6, 'severe_profanity': 40, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  damn: 3
+  ass: 2
+  piss: 1
+
+strong_profanity:
+  shit: 3
+  pussy: 2
+  dick: 1
+
+severe_profanity:
+  fuck: 34
+  fucking: 5
+  fucker: 1
+COUNTS
+{'mild_profanity': 6, 'strong_profanity': 13, 'severe_profanity': 20, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  ass: 3
+  sucks: 1
+  hell: 1
+  damn: 1
+
+strong_profanity:
+  shit: 12
+  pussy: 1
+
+severe_profanity:
+  fuck: 11
+  fucking: 7
+  motherfucker: 1
+  fucker: 1
+
+identity_slur_race:
+  nigga: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 2, 'strong_profanity': 4, 'severe_profanity': 9, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  ass: 1
+  sucks: 1
+
+strong_profanity:
+  shit: 3
+  shitty: 1
+
+severe_profanity:
+  fuck: 8
+  fucking: 1
+COUNTS
+{'mild_profanity': 6, 'strong_profanity': 12, 'severe_profanity': 25, 'identity_slur_race': 0, 'identity_slur_sexuality': 1, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  sucks: 3
+  ass: 3
+
+strong_profanity:
+  shit: 5
+  dick: 3
+  pussy: 3
+  pussies: 1
+
+severe_profanity:
+  fuck: 13
+  fucking: 10
+  motherfuckers: 1
+  fucker: 1
+
+identity_slur_sexuality:
+  faggot: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 9, 'strong_profanity': 13, 'severe_profanity': 63, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  ass: 6
+  hell: 1
+  sucks: 1
+  damn: 1
+
+strong_profanity:
+  shit: 9
+  asshole: 1
+  pussy: 1
+  bitch: 1
+  assholes: 1
+
+severe_profanity:
+  fuck: 47
+  fucking: 16
+COUNTS
+{'mild_profanity': 2, 'strong_profanity': 36, 'severe_profanity': 85, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  ass: 1
+  sucks: 1
+
+strong_profanity:
+  s**t: 26
+  b**ch: 8
+  d**k: 2
+
+severe_profanity:
+  f**k: 64
+  f**king: 18
+  motherf**ker: 2
+  f**ked: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 2, 'strong_profanity': 16, 'severe_profanity': 18, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  piss: 1
+  sucks: 1
+
+strong_profanity:
+  shit: 12
+  bitch: 2
+  shitty: 1
+  bullshit: 1
+
+severe_profanity:
+  fuck: 11
+  fucking: 7
+
+identity_slur_race:
+  nigga: 1
+COUNTS
+{'mild_profanity': 2, 'strong_profanity': 10, 'severe_profanity': 6, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  ass: 2
+
+strong_profanity:
+  shit: 6
+  bitch: 2
+  pussy: 1
+  dick: 1
+
+severe_profanity:
+  fucking: 4
+  fuck: 2
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 4, 'strong_profanity': 6, 'severe_profanity': 14, 'identity_slur_race': 0, 'identity_slur_sexuality': 2, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  sucks: 3
+  ass: 1
+
+strong_profanity:
+  bullshit: 2
+  shit: 2
+  bitches: 1
+  pussies: 1
+
+severe_profanity:
+  fuck: 9
+  fucking: 3
+  motherfuckers: 1
+  motherfucker: 1
+
+identity_slur_sexuality:
+  faggot: 2
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 7, 'strong_profanity': 26, 'severe_profanity': 41, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 2}
+
+TERMS
+
+mild_profanity:
+  sucks: 3
+  ass: 2
+  hell: 1
+  damn: 1
+
+strong_profanity:
+  shit: 13
+  pussy: 5
+  dick: 4
+  bitch: 3
+  pussies: 1
+
+severe_profanity:
+  fuck: 28
+  fucking: 12
+  fucked: 1
+
+identity_context_needed:
+  gay: 2
+COUNTS
+{'mild_profanity': 5, 'strong_profanity': 26, 'severe_profanity': 6, 'identity_slur_race': 0, 'identity_slur_sexuality': 1, 'identity_context_needed': 3}
+
+TERMS
+
+mild_profanity:
+  sucks: 4
+  ass: 1
+
+strong_profanity:
+  shit: 23
+  dick: 2
+  bullshit: 1
+
+severe_profanity:
+  fuck: 3
+  fucking: 2
+  motherfucking: 1
+
+identity_slur_sexuality:
+  faggot: 1
+
+identity_context_needed:
+  gay: 3
+COUNTS
+{'mild_profanity': 2, 'strong_profanity': 18, 'severe_profanity': 21, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  damn: 1
+  hell: 1
+
+strong_profanity:
+  shit: 13
+  bullshit: 2
+  bitch: 2
+  pussy: 1
+
+severe_profanity:
+  fuck: 16
+  fucking: 4
+  motherfucker: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 3, 'strong_profanity': 12, 'severe_profanity': 14, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  hell: 1
+  ass: 1
+  piss: 1
+
+strong_profanity:
+  shit: 10
+  bitch: 1
+  asshole: 1
+
+severe_profanity:
+  fuck: 6
+  fucking: 6
+  fucked: 1
+  f***: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 3, 'strong_profanity': 2, 'severe_profanity': 5, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 2
+  ass: 1
+
+strong_profanity:
+  shit: 2
+
+severe_profanity:
+  fuck: 4
+  fucking: 1
+COUNTS
+{'mild_profanity': 12, 'strong_profanity': 21, 'severe_profanity': 23, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 2}
+
+TERMS
+
+mild_profanity:
+  a**: 5
+  ass: 3
+  damn: 2
+  piss: 1
+  hell: 1
+
+strong_profanity:
+  s**t: 11
+  bitch: 5
+  shit: 4
+  bullshit: 1
+
+severe_profanity:
+  f**k: 14
+  fuck: 3
+  f**king: 2
+  f***: 1
+  motherf*****: 1
+  fucks: 1
+  fucking: 1
+
+identity_context_needed:
+  gay: 2
+COUNTS
+{'mild_profanity': 5, 'strong_profanity': 11, 'severe_profanity': 27, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  ass: 3
+  hell: 2
+
+strong_profanity:
+  shit: 7
+  pussy: 3
+  bitch: 1
+
+severe_profanity:
+  fuck: 21
+  fucking: 6
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 3, 'strong_profanity': 13, 'severe_profanity': 35, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  ass: 2
+  sucks: 1
+
+strong_profanity:
+  shit: 9
+  bitch: 3
+  shits: 1
+
+severe_profanity:
+  fuck: 23
+  fucking: 11
+  f**k: 1
+COUNTS
+{'mild_profanity': 14, 'strong_profanity': 33, 'severe_profanity': 51, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 3}
+
+TERMS
+
+mild_profanity:
+  a**: 9
+  sucks: 2
+  piss: 1
+  hell: 1
+  damn: 1
+
+strong_profanity:
+  s**t: 14
+  b**ch: 6
+  sh**: 4
+  d**k: 4
+  d**ks: 2
+  s***: 1
+  pussy: 1
+  a**hole: 1
+
+severe_profanity:
+  f**k: 30
+  f**king: 11
+  motherf**ker: 2
+  fuck: 2
+  f***ed: 1
+  f***: 1
+  motherfucking: 1
+  fucked: 1
+  f**ked: 1
+  f**ks: 1
+
+identity_context_needed:
+  gay: 3
+COUNTS
+{'mild_profanity': 12, 'strong_profanity': 44, 'severe_profanity': 66, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  a**: 6
+  ass: 2
+  sucks: 2
+  damn: 1
+  hell: 1
+
+strong_profanity:
+  s***: 26
+  s**t: 13
+  b***h: 2
+  d**k: 1
+  bulls**t: 1
+  p***y: 1
+
+severe_profanity:
+  f***: 33
+  f***ing: 17
+  f**k: 8
+  f**king: 7
+  f***ed: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 15, 'strong_profanity': 16, 'severe_profanity': 40, 'identity_slur_race': 2, 'identity_slur_sexuality': 0, 'identity_context_needed': 3}
+
+TERMS
+
+mild_profanity:
+  a**: 3
+  ass: 3
+  sucks: 3
+  piss: 2
+  hell: 2
+  damn: 2
+
+strong_profanity:
+  shit: 8
+  s**t: 3
+  bullshit: 2
+  s***: 2
+  bitch: 1
+
+severe_profanity:
+  fuck: 14
+  f***ing: 8
+  f***: 7
+  f**k: 6
+  f**king: 4
+  fucking: 1
+
+identity_slur_race:
+  nigga: 2
+
+identity_context_needed:
+  gay: 3
+COUNTS
+{'mild_profanity': 4, 'strong_profanity': 1, 'severe_profanity': 1, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  ass: 2
+  hell: 1
+  sucks: 1
+
+strong_profanity:
+  shit: 1
+
+severe_profanity:
+  fucking: 1
+COUNTS
+{'mild_profanity': 4, 'strong_profanity': 1, 'severe_profanity': 2, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  ass: 3
+  sucks: 1
+
+strong_profanity:
+  bulls**t: 1
+
+severe_profanity:
+  fuck: 2
+COUNTS
+{'mild_profanity': 2, 'strong_profanity': 2, 'severe_profanity': 4, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  ass: 1
+  sucks: 1
+
+strong_profanity:
+  shit: 2
+
+severe_profanity:
+  fuck: 3
+  fucked: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 19, 'strong_profanity': 24, 'severe_profanity': 26, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  a**: 7
+  damn: 5
+  hell: 3
+  piss: 2
+  ass: 1
+  sucks: 1
+
+strong_profanity:
+  s**t: 14
+  b**ch: 3
+  bullsh**: 2
+  shit: 2
+  d**k: 1
+  d**khead: 1
+  bitch: 1
+
+severe_profanity:
+  f**k: 17
+  fucking: 4
+  f**ked: 3
+  f**king: 2
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 11, 'strong_profanity': 3, 'severe_profanity': 10, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  sucks: 10
+  ass: 1
+
+strong_profanity:
+  s**t: 1
+  dick: 1
+  pussy: 1
+
+severe_profanity:
+  fuck: 6
+  f**king: 1
+  f**k: 1
+  f***: 1
+  fucked: 1
+COUNTS
+{'mild_profanity': 0, 'strong_profanity': 5, 'severe_profanity': 6, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+strong_profanity:
+  bitch: 2
+  dick: 1
+  shitty: 1
+  shit: 1
+
+severe_profanity:
+  fuck: 5
+  fucked: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 23, 'strong_profanity': 18, 'severe_profanity': 51, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  ass: 10
+  damn: 7
+  sucks: 6
+
+strong_profanity:
+  shit: 11
+  pussy: 2
+  bitch: 2
+  s***: 1
+  bullshit: 1
+  shitty: 1
+
+severe_profanity:
+  fuck: 32
+  fucking: 12
+  f***: 3
+  f***ing: 2
+  f**k: 1
+  fucked: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 7, 'strong_profanity': 5, 'severe_profanity': 3, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  ass: 3
+  sucks: 2
+  damn: 1
+  hell: 1
+
+strong_profanity:
+  shit: 3
+  bullshit: 2
+
+severe_profanity:
+  fuck: 2
+  fucking: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 4, 'strong_profanity': 11, 'severe_profanity': 23, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 2
+  damn: 1
+  sucks: 1
+
+strong_profanity:
+  shit: 9
+  bitch: 2
+
+severe_profanity:
+  fuck: 16
+  fucking: 4
+  motherf**ker: 2
+  fucked: 1
+
+identity_slur_race:
+  nigga: 1
+COUNTS
+{'mild_profanity': 9, 'strong_profanity': 27, 'severe_profanity': 27, 'identity_slur_race': 0, 'identity_slur_sexuality': 1, 'identity_context_needed': 5}
+
+TERMS
+
+mild_profanity:
+  ass: 7
+  damn: 2
+
+strong_profanity:
+  shit: 16
+  pussy: 5
+  bitch: 4
+  dickhead: 2
+
+severe_profanity:
+  fuck: 18
+  fucking: 8
+  motherfucker: 1
+
+identity_slur_sexuality:
+  faggots: 1
+
+identity_context_needed:
+  gay: 5
+COUNTS
+{'mild_profanity': 4, 'strong_profanity': 18, 'severe_profanity': 21, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 11}
+
+TERMS
+
+mild_profanity:
+  sucks: 2
+  damn: 1
+  ass: 1
+
+strong_profanity:
+  shit: 10
+  s**t: 5
+  bitches: 1
+  dick: 1
+  sh**: 1
+
+severe_profanity:
+  f**k: 11
+  fuck: 6
+  fucked: 2
+  fucking: 1
+  f**ked: 1
+
+identity_slur_race:
+  n*****: 1
+
+identity_context_needed:
+  gay: 11
+COUNTS
+{'mild_profanity': 2, 'strong_profanity': 2, 'severe_profanity': 1, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 2
+
+strong_profanity:
+  b****: 2
+
+severe_profanity:
+  f***: 1
+COUNTS
+{'mild_profanity': 7, 'strong_profanity': 4, 'severe_profanity': 28, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 4
+  ass: 3
+
+strong_profanity:
+  s***: 1
+  shits: 1
+  dick: 1
+  sh**ty: 1
+
+severe_profanity:
+  f***: 15
+  fuck: 6
+  f**k: 3
+  f**king: 2
+  f***ing: 1
+  fucking: 1
+
+identity_slur_race:
+  n***a: 1
+COUNTS
+{'mild_profanity': 19, 'strong_profanity': 14, 'severe_profanity': 13, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 8
+  ass: 5
+  ****: 3
+  sucks: 2
+  p****s: 1
+
+strong_profanity:
+  b****: 7
+  shit: 3
+  s**t: 2
+  asshole: 1
+  bullshit: 1
+
+severe_profanity:
+  fuck: 9
+  f***: 1
+  f***ing: 1
+  fucking: 1
+  f**king: 1
+
+identity_slur_race:
+  nigga: 1
+COUNTS
+{'mild_profanity': 20, 'strong_profanity': 12, 'severe_profanity': 13, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  ****: 17
+  damn: 1
+  hell: 1
+  ass: 1
+
+strong_profanity:
+  bitch: 5
+  shit: 3
+  bulls**t: 2
+  b**ch: 1
+  s***: 1
+
+severe_profanity:
+  fucking: 4
+  fuck: 4
+  f**k: 3
+  f**king: 2
+COUNTS
+{'mild_profanity': 6, 'strong_profanity': 0, 'severe_profanity': 5, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  piss: 4
+  hell: 2
+
+severe_profanity:
+  fucking: 2
+  fuck: 2
+  f***: 1
+COUNTS
+{'mild_profanity': 5, 'strong_profanity': 3, 'severe_profanity': 4, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 2}
+
+TERMS
+
+mild_profanity:
+  ass: 2
+  sucks: 1
+  damn: 1
+  hell: 1
+
+strong_profanity:
+  bullshit: 1
+  shit: 1
+  bullsh**: 1
+
+severe_profanity:
+  f***: 2
+  fucked: 1
+  motherfuckers: 1
+
+identity_context_needed:
+  gay: 2
+COUNTS
+{'mild_profanity': 8, 'strong_profanity': 4, 'severe_profanity': 5, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 2}
+
+TERMS
+
+mild_profanity:
+  hell: 5
+  piss: 2
+  ass: 1
+
+strong_profanity:
+  bitch: 2
+  s**t: 1
+  dick: 1
+
+severe_profanity:
+  f**king: 3
+  fucking: 1
+  fuck: 1
+
+identity_slur_race:
+  nigga: 1
+
+identity_context_needed:
+  gay: 2
+COUNTS
+{'mild_profanity': 1, 'strong_profanity': 5, 'severe_profanity': 4, 'identity_slur_race': 1, 'identity_slur_sexuality': 1, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  ass: 1
+
+strong_profanity:
+  shit: 4
+  asshole: 1
+
+severe_profanity:
+  fuck: 2
+  fucking: 2
+
+identity_slur_race:
+  nigga: 1
+
+identity_slur_sexuality:
+  fag: 1
+COUNTS
+{'mild_profanity': 36, 'strong_profanity': 5, 'severe_profanity': 20, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 4}
+
+TERMS
+
+mild_profanity:
+  ****: 18
+  hell: 9
+  sucks: 5
+  a**: 1
+  piss: 1
+  damn: 1
+  ass: 1
+
+strong_profanity:
+  shit: 3
+  bitch: 1
+  asshole: 1
+
+severe_profanity:
+  f***ing: 8
+  fuck: 6
+  f***ed: 2
+  f***: 2
+  fucked: 1
+  fucking: 1
+
+identity_context_needed:
+  gay: 4
+COUNTS
+{'mild_profanity': 3, 'strong_profanity': 12, 'severe_profanity': 15, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 2
+  ass: 1
+
+strong_profanity:
+  s***: 5
+  s**t: 4
+  bitch: 1
+  shit: 1
+  bullshit: 1
+
+severe_profanity:
+  f***: 8
+  f***ing: 4
+  f**k: 2
+  f**king: 1
+
+identity_slur_race:
+  nigga: 1
+COUNTS
+{'mild_profanity': 7, 'strong_profanity': 16, 'severe_profanity': 34, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 4
+  c***: 2
+  damn: 1
+
+strong_profanity:
+  s***: 10
+  shit: 4
+  bitch: 1
+  pussy: 1
+
+severe_profanity:
+  f***: 20
+  f***ing: 9
+  fuck: 2
+  fucked: 2
+  f***ed: 1
+COUNTS
+{'mild_profanity': 3, 'strong_profanity': 0, 'severe_profanity': 0, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 3
+COUNTS
+{'mild_profanity': 7, 'strong_profanity': 1, 'severe_profanity': 3, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  hell: 4
+  sucks: 2
+  ass: 1
+
+strong_profanity:
+  asshole: 1
+
+severe_profanity:
+  fucking: 2
+  fuck: 1
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 4, 'strong_profanity': 1, 'severe_profanity': 4, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 3
+  sucks: 1
+
+strong_profanity:
+  shit: 1
+
+severe_profanity:
+  fuck: 3
+  fucking: 1
+
+identity_slur_race:
+  nigga: 1
+COUNTS
+{'mild_profanity': 3, 'strong_profanity': 2, 'severe_profanity': 8, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 2
+  ass: 1
+
+strong_profanity:
+  shit: 1
+  bitch: 1
+
+severe_profanity:
+  fuck: 7
+  fucked: 1
+
+identity_slur_race:
+  nigga: 1
+COUNTS
+{'mild_profanity': 19, 'strong_profanity': 17, 'severe_profanity': 46, 'identity_slur_race': 1, 'identity_slur_sexuality': 0, 'identity_context_needed': 4}
+
+TERMS
+
+mild_profanity:
+  ass: 9
+  hell: 4
+  damn: 2
+  sucks: 2
+  crap: 1
+  a**: 1
+
+strong_profanity:
+  s***: 7
+  shit: 6
+  bitch: 2
+  pussy: 2
+
+severe_profanity:
+  fuck: 13
+  f***: 12
+  f***ing: 11
+  f***ed: 7
+  fucking: 3
+
+identity_slur_race:
+  nigga: 1
+
+identity_context_needed:
+  gay: 4
+COUNTS
+{'mild_profanity': 4, 'strong_profanity': 2, 'severe_profanity': 0, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 2
+  sucks: 1
+  damn: 1
+
+strong_profanity:
+  shit: 2
+COUNTS
+{'mild_profanity': 7, 'strong_profanity': 22, 'severe_profanity': 43, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 3
+  ass: 3
+  damn: 1
+
+strong_profanity:
+  shit: 16
+  dickhead: 2
+  shits: 1
+  s**t: 1
+  dick: 1
+  bitch: 1
+
+severe_profanity:
+  fucking: 15
+  fuck: 11
+  fucked: 9
+  f***ing: 5
+  f**king: 2
+  f***: 1
+COUNTS
+{'mild_profanity': 3, 'strong_profanity': 0, 'severe_profanity': 2, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 1}
+
+TERMS
+
+mild_profanity:
+  damn: 1
+  ass: 1
+  hell: 1
+
+severe_profanity:
+  fuck: 2
+
+identity_context_needed:
+  gay: 1
+COUNTS
+{'mild_profanity': 9, 'strong_profanity': 8, 'severe_profanity': 27, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  a**: 4
+  d***: 3
+  damn: 1
+  hell: 1
+
+strong_profanity:
+  bull****: 2
+  bitch: 2
+  shit: 2
+  b****: 2
+
+severe_profanity:
+  f***: 15
+  f***ing: 5
+  fuck: 3
+  f****d: 2
+  f******: 1
+  f***ed: 1
+COUNTS
+{'mild_profanity': 5, 'strong_profanity': 1, 'severe_profanity': 1, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 3
+  ass: 1
+  sucks: 1
+
+strong_profanity:
+  shit: 1
+
+severe_profanity:
+  fucking: 1
+COUNTS
+{'mild_profanity': 12, 'strong_profanity': 23, 'severe_profanity': 51, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  hell: 8
+  a**: 2
+  ass: 2
+
+strong_profanity:
+  s***: 16
+  bulls***: 2
+  shit: 2
+  b****: 1
+  bitch: 1
+  pussies: 1
+
+severe_profanity:
+  f***: 25
+  f***ing: 11
+  fuck: 9
+  f***ed: 3
+  fucking: 2
+  fucked: 1
+COUNTS
+{'mild_profanity': 9, 'strong_profanity': 9, 'severe_profanity': 36, 'identity_slur_race': 0, 'identity_slur_sexuality': 0, 'identity_context_needed': 0}
+
+TERMS
+
+mild_profanity:
+  sucks: 5
+  hell: 2
+  ****: 2
+
+strong_profanity:
+  s***: 7
+  bull****: 1
+  b***h: 1
+
+severe_profanity:
+  f***: 21
+  f***ing: 10
+  fuck: 3
+  f***hole: 1
+  f***ed: 1

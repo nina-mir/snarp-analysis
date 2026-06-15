@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Profanity Index — SNARP Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ---- palette ---------------------------------------------------------- */
+  :root{
+    --bg:#f3efe6; --ink:#1c1813; --muted:#6f6557; --faint:#948a7a;
+    --card:#fbf9f3; --border:#e0d9c9; --rule:#ece5d6; --accent:#cf3f1d;
+    --mild:#c9ad6e; --strong:#dd8a3c; --severe:#c4351c;
+    --slurRace:#79386f; --slurSex:#a23d62; --context:#b3a896;
+    --mono:'IBM Plex Mono',ui-monospace,monospace; --sans:'Archivo',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--accent); color:#fff; }
+  a{ color:inherit; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 28px 80px; }
+
+  /* ---- header ----------------------------------------------------------- */
+  header{ padding:42px 0 26px; border-bottom:2px solid var(--ink); }
+  .kicker{ display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+  .kicker .live{ color:var(--accent); }
+  h1{ font-size:78px; line-height:.93; font-weight:800; letter-spacing:-2.5px; margin:24px 0 0; }
+  .lede{ max-width:680px; font-size:17px; line-height:1.55; color:#4a4438; margin:20px 0 0; }
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:32px; background:var(--border); border:1px solid var(--border); }
+  .stat{ background:var(--bg); padding:16px 18px; }
+  .stat .lab{ font-family:var(--mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+  .stat .num{ font-size:40px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums; letter-spacing:-1px; }
+  .stat .num small{ font-size:15px; color:var(--faint); font-weight:500; }
+  .legend{ display:flex; flex-wrap:wrap; gap:20px; padding-top:20px; }
+  .legend .item{ display:flex; align-items:center; gap:8px; font-size:13px; }
+  .legend .sw{ width:13px; height:13px; border-radius:3px; display:inline-block; }
+  .legend .n{ font-family:var(--mono); color:var(--faint); font-size:12px; }
+
+  /* ---- section headings ------------------------------------------------- */
+  section{ padding:36px 0 10px; }
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); }
+  .eyebrow.purple{ color:var(--slurRace); }
+  h2{ font-size:32px; font-weight:700; margin:7px 0 0; letter-spacing:-.6px; }
+  .blurb{ max-width:660px; font-size:15px; line-height:1.55; color:#4a4438; margin:12px 0 0; }
+
+  /* ---- ranking ---------------------------------------------------------- */
+  .controls{ display:flex; flex-direction:column; gap:9px; align-items:flex-end; }
+  .seg{ display:flex; gap:6px; flex-wrap:wrap; }
+  .sortbtn{ font-family:var(--mono); font-size:12px; letter-spacing:.4px; padding:6px 12px; border-radius:20px; border:1px solid var(--ink); cursor:pointer; background:var(--bg); color:var(--ink); }
+  .sortbtn.on{ background:var(--ink); color:var(--bg); }
+  .normbtn{ font-family:var(--mono); font-size:11px; padding:6px 12px; border-radius:20px; border:1px dashed #b9ad97; background:transparent; color:var(--muted); cursor:pointer; }
+  .rank-head{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:18px; }
+  .filterbar{ margin-top:16px; display:flex; align-items:center; gap:10px; font-size:13px; }
+  .filterbar .lab{ font-family:var(--mono); color:var(--muted); }
+  .chip{ background:var(--ink); color:var(--bg); padding:3px 11px; border-radius:20px; font-weight:600; font-family:var(--mono); }
+  .clearbtn{ border:none; background:none; color:var(--accent); cursor:pointer; font-size:13px; font-family:var(--mono); }
+  .row{ display:grid; grid-template-columns:30px minmax(150px,1fr) 1.4fr 98px; gap:14px; align-items:center; padding:8px; border-bottom:1px solid var(--rule); cursor:pointer; }
+  .row:hover{ background:#fbf8f1; }
+  .row .r-rank{ font-family:var(--mono); font-size:13px; color:var(--faint); text-align:right; }
+  .row .r-title{ font-weight:600; font-size:14px; display:flex; align-items:center; gap:7px; }
+  .row .r-title span.t{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .row .r-sch{ font-family:var(--mono); font-size:11px; color:var(--faint); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .dot{ width:7px; height:7px; border-radius:50%; background:var(--slurRace); flex:none; }
+  .txt-badge{ font-family:var(--mono); font-size:9px; color:var(--accent); border:1px solid #e3b9ac; border-radius:3px; padding:0 3px; flex:none; }
+  .bar{ display:flex; height:18px; background:#ece5d6; border-radius:3px; overflow:hidden; }
+  .bar > span{ display:block; height:100%; }
+  .r-rate{ text-align:right; }
+  .r-rate .big{ font-family:var(--mono); font-weight:600; font-size:16px; }
+  .r-rate .sub{ font-family:var(--mono); font-size:10px; color:var(--faint); }
+
+  /* ---- lexicon ---------------------------------------------------------- */
+  .lex{ display:grid; grid-template-columns:repeat(auto-fit,minmax(176px,1fr)); gap:22px; margin-top:18px; }
+  .lex-col h3{ display:flex; align-items:center; gap:8px; padding-bottom:10px; margin:0 0 10px; border-bottom:2px solid; font-size:14px; font-weight:700; }
+  .lex-col h3 .ct{ font-family:var(--mono); font-size:12px; color:var(--faint); margin-left:auto; font-weight:500; }
+  .term{ cursor:pointer; padding:5px 0; }
+  .term:hover{ opacity:.65; }
+  .term .lab{ display:flex; justify-content:space-between; font-size:13px; margin-bottom:3px; }
+  .term .lab .c{ font-family:var(--mono); color:var(--muted); }
+  .term.on .w{ font-weight:700; }
+  .meter{ height:5px; background:#ece5d6; border-radius:3px; overflow:hidden; }
+  .meter > span{ display:block; height:100%; }
+
+  /* ---- programs --------------------------------------------------------- */
+  .prog{ display:grid; grid-template-columns:minmax(130px,1fr) 1.6fr 86px 70px; gap:14px; align-items:center; padding:7px 0; border-bottom:1px solid var(--rule); }
+  .prog .name{ font-weight:600; font-size:14px; display:flex; gap:6px; align-items:center; }
+  .prog .vids{ font-family:var(--mono); font-size:10px; color:var(--faint); }
+  .prog .track{ height:14px; background:#ece5d6; border-radius:3px; overflow:hidden; }
+  .prog .track > span{ display:block; height:100%; background:#c4351c; }
+  .prog .val{ font-family:var(--mono); font-size:13px; text-align:right; }
+  .prog .val small{ color:var(--faint); font-size:10px; }
+
+  /* ---- incidents -------------------------------------------------------- */
+  .incidents{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; margin-top:18px; }
+  .inc{ background:var(--card); border:1px solid var(--border); border-left:4px solid var(--slurRace); border-radius:8px; padding:14px 16px; cursor:pointer; }
+  .inc:hover{ background:#f6f2e8; }
+  .inc .t{ font-weight:600; font-size:14px; }
+  .inc .s{ font-family:var(--mono); font-size:11px; color:var(--faint); margin:3px 0 10px; }
+  .inc .tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .inc .tag{ font-family:var(--mono); font-size:12px; color:#fff; padding:2px 9px; border-radius:20px; }
+
+  /* ---- search ----------------------------------------------------------- */
+  #search-input{ width:100%; font-family:var(--mono); font-size:15px; padding:14px 16px; border:1.5px solid var(--ink); border-radius:8px; background:var(--card); color:var(--ink); outline:none; margin-top:18px; }
+  .kwic-meta{ font-family:var(--mono); font-size:12px; color:var(--muted); margin:14px 0 10px; }
+  .kwic{ display:grid; grid-template-columns:58px 150px 1fr; gap:14px; align-items:baseline; padding:9px 0; border-bottom:1px solid var(--rule); }
+  .kwic .time{ font-family:var(--mono); font-size:13px; color:var(--accent); font-weight:600; text-decoration:none; border-bottom:1px dotted #e3b9ac; }
+  .kwic .time:hover{ color:#b53414; }
+  .kwic .vid{ font-family:var(--mono); font-size:11px; color:var(--faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .kwic .line{ font-size:14px; line-height:1.5; }
+  .kwic .line mark{ background:#f3d24a; color:inherit; }
+  .empty{ font-family:var(--mono); font-size:13px; color:#a89e8c; margin-top:14px; }
+
+  /* ---- footer ----------------------------------------------------------- */
+  footer{ border-top:2px solid var(--ink); padding-top:18px; margin-top:24px; font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--faint); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  /* ---- drawer ----------------------------------------------------------- */
+  @keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+  @keyframes drawerIn{ from{ transform:translateX(40px); opacity:0; } to{ transform:translateX(0); opacity:1; } }
+  .scrim{ position:fixed; inset:0; background:rgba(20,18,14,.42); z-index:50; animation:fadeIn .2s ease; }
+  .drawer{ position:absolute; top:0; right:0; height:100%; width:min(560px,94vw); background:#f6f3ea; box-shadow:-18px 0 60px rgba(0,0,0,.28); overflow-y:auto; animation:drawerIn .32s cubic-bezier(.2,.8,.2,1); padding:26px 30px 50px; }
+  .drawer .x{ position:absolute; top:18px; right:20px; border:none; background:none; font-size:22px; color:var(--muted); cursor:pointer; line-height:1; }
+  .drawer h3{ font-size:24px; font-weight:700; margin:8px 40px 4px 0; letter-spacing:-.5px; line-height:1.1; }
+  .drawer .d-sch{ font-family:var(--mono); font-size:12px; color:var(--faint); }
+  .yt{ display:inline-flex; align-items:center; gap:9px; margin-top:14px; text-decoration:none; background:var(--accent); color:#fff; font-weight:600; font-size:13px; padding:9px 15px; border-radius:7px; }
+  .yt:hover{ background:#b53414; }
+  .yt .play{ display:inline-flex; width:20px; height:14px; background:#fff; border-radius:3px; align-items:center; justify-content:center; }
+  .yt .play i{ width:0; height:0; border-left:6px solid var(--accent); border-top:4px solid transparent; border-bottom:4px solid transparent; margin-left:1px; }
+  .d-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:18px; background:var(--border); border:1px solid var(--border); }
+  .d-stats .c{ background:#f6f3ea; padding:11px 12px; }
+  .d-stats .c .l{ font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--faint); }
+  .d-stats .c .v{ font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .d-sub{ font-family:var(--mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:24px 0 6px; }
+  .timeline-box{ background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px 10px; }
+  .no-tr{ font-family:var(--mono); font-size:12px; color:#a89e8c; background:#efeadf; border-radius:8px; padding:12px 14px; margin-top:22px; }
+  .tgroup{ margin-bottom:16px; }
+  .tgroup .gh{ display:flex; align-items:center; gap:8px; margin-bottom:8px; font-weight:700; font-size:13px; }
+  .tgroup .gh .sw{ width:11px; height:11px; border-radius:3px; }
+  .tgroup .gt{ display:grid; grid-template-columns:110px 1fr 34px; gap:10px; align-items:center; padding:2px 0; }
+  .tgroup .gt .word{ font-family:var(--mono); font-size:13px; }
+  .tgroup .gt .num{ font-family:var(--mono); font-size:12px; color:var(--muted); text-align:right; }
+
+  /* ---- load error ------------------------------------------------------- */
+  .loaderr{ max-width:620px; margin:80px auto; padding:28px 32px; background:#fff; border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:10px; font-family:var(--mono); }
+  .loaderr b{ font-size:15px; }
+  .loaderr p{ font-size:13px; line-height:1.7; color:#4a4438; }
+  .loaderr code{ background:var(--bg); padding:1px 5px; border-radius:3px; }
+
+  @media (max-width:720px){
+    h1{ font-size:48px; } .stats{ grid-template-columns:repeat(2,1fr); }
+    .row{ grid-template-columns:24px 1fr 70px; } .row .bar{ display:none; }
+    .prog{ grid-template-columns:1fr 60px; } .prog .track{ display:none; }
+    .kwic{ grid-template-columns:50px 1fr; } .kwic .vid{ display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span>SNARP &middot; Field Report 01</span>
+      <span class="live">&#9679; <span id="stat-count">—</span> transcripts analyzed</span>
+    </div>
+    <h1>The Profanity Index</h1>
+    <p class="lede">A tiered linguistic analysis of 54 college-football troll videos — every curse, slur, and flagged term, sorted by severity and mapped across matchups, programs, and the transcripts themselves.</p>
+    <div class="stats" id="stats"></div>
+    <div class="legend" id="legend"></div>
+  </header>
+
+  <!-- 01 — THE RANKING -->
+  <section>
+    <div class="rank-head">
+      <div>
+        <div class="eyebrow">01 — The Ranking</div>
+        <h2>Every video, by intensity</h2>
+      </div>
+      <div class="controls">
+        <div class="seg" id="sort-buttons"></div>
+        <button class="normbtn" id="norm-toggle"></button>
+      </div>
+    </div>
+    <div id="filter-bar"></div>
+    <div id="ranking" style="margin-top:20px;"></div>
+  </section>
+
+  <!-- 02 — THE LEXICON -->
+  <section>
+    <div class="eyebrow">02 — The Lexicon</div>
+    <h2>What he actually says</h2>
+    <p class="blurb">Every term, aggregated across all 54 videos and de-censored into canonical forms. <strong>Click any word</strong> to filter the ranking above and search the transcripts below.</p>
+    <div class="lex" id="lexicon"></div>
+  </section>
+
+  <!-- 03 — BY PROGRAM -->
+  <section>
+    <div class="eyebrow">03 — By Program</div>
+    <h2>Who brings out the heat</h2>
+    <p class="blurb">Every curse counted across each school’s appearances (a video credits both schools in the matchup).</p>
+    <div id="programs" style="margin-top:18px;"></div>
+  </section>
+
+  <!-- 04 — INCIDENTS -->
+  <section>
+    <div class="eyebrow purple">04 — Incidents</div>
+    <h2>Identity-slur occurrences</h2>
+    <p class="blurb">Every video the classifier flagged for a racial or sexuality-based slur, shown verbatim for analysis. Click to open the full term breakdown.</p>
+    <div class="incidents" id="incidents"></div>
+  </section>
+
+  <!-- 05 — TRANSCRIPT SEARCH -->
+  <section>
+    <div class="eyebrow">05 — Transcript Search</div>
+    <h2>Keyword in context</h2>
+    <p class="blurb">Searching <strong><span id="search-count">0</span> of 54</strong> transcripts currently loaded. Type a word to see every timestamped line it appears in. Add more transcript files and rebuild — they join automatically.</p>
+    <input id="search-input" placeholder="Search the transcripts — e.g. fuck, michigan, mascot, scoreboard…">
+    <div id="kwic-results"></div>
+  </section>
+
+  <footer>
+    <span>Built by Nina Mir &middot; SNARP Profanity Index</span>
+    <span>Tiered classification &middot; counts as recorded</span>
+    <a href="https://github.com/nina-mir/snarp-analysis" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none;">github.com/nina-mir/snarp-analysis ↗</a>
+  </footer>
+</div>
+
+<div id="drawer-root"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
