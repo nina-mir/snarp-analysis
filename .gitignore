@@ -9,7 +9,6 @@ env/
 venv/
 .venv/
 ENV/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -39,7 +38,6 @@ node_modules/
 .turbo/
 dist/
 out/
-build/
 
 # ====================================================================
 # HTML / Frontend / General Web 
