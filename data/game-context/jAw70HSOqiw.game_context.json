@@ -1,0 +1,19 @@
+{
+  "video_id": "jAw70HSOqiw",
+  "year": 2025,
+  "date": null,
+  "featured_team": "Wisconsin",
+  "target_fanbase": "Indiana",
+  "home_team": "Indiana",
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": "Indiana University",
+  "video_location_city_state": "Bloomington, Indiana",
+  "game_or_event_label": null,
+  "rivalry": null,
+  "sport": "college football",
+  "confidence": "high",
+  "evidence": "Title and description explicitly state Wisconsin fan trolling Indiana at Indiana University in Bloomington.",
+  "needs_review": false,
+  "notes": "Upload date is in the future relative to typical sports calendar; video context describes an interaction at a specific university campus."
+}

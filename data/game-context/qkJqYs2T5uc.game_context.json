@@ -1,0 +1,19 @@
+{
+  "video_id": "qkJqYs2T5uc",
+  "year": 2025,
+  "date": null,
+  "featured_team": "Houston Cougars",
+  "target_fanbase": "Florida Gators",
+  "home_team": "Florida Gators",
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": "University of Florida campus",
+  "video_location_city_state": "Gainesville, Florida",
+  "game_or_event_label": "NCAA National Championship Game",
+  "rivalry": null,
+  "sport": "college basketball",
+  "confidence": "medium",
+  "evidence": "Description states creator visited University of Florida in Houston Cougars gear while students watched the NCAA National Championship Game.",
+  "needs_review": false,
+  "notes": "While the description mentions NCAA National Championship, the sport is inferred as basketball based on the nature of the event timing (April) and general context of typical college national championships involving these schools."
+}

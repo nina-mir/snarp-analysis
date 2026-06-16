@@ -1,0 +1,19 @@
+{
+  "video_id": "34q-xG2C91w",
+  "year": 2026,
+  "date": null,
+  "featured_team": "UConn",
+  "target_fanbase": "Illinois",
+  "home_team": null,
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": "University of Illinois Urbana-Champaign",
+  "video_location_city_state": "Champaign, Illinois",
+  "game_or_event_label": "Final Four",
+  "rivalry": null,
+  "sport": "college basketball",
+  "confidence": "high",
+  "evidence": "Title and description explicitly state 'UConn Fan Trolls Illinois' during 'Final Four' at the 'University of Illinois Urbana-Champaign'.",
+  "needs_review": false,
+  "notes": "The video description claims the filming location was the University of Illinois campus for the Final Four, but the Final Four is a neutral-site tournament; this implies the creator visited the campus for the atmosphere, not the game itself."
+}

@@ -1,0 +1,19 @@
+{
+  "video_id": "CouyNNyK2Z0",
+  "year": 2026,
+  "date": null,
+  "featured_team": "North Carolina",
+  "target_fanbase": "Duke",
+  "home_team": "Duke",
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": "Duke University campus",
+  "video_location_city_state": "Durham, North Carolina",
+  "game_or_event_label": "UNC vs Duke rivalry",
+  "rivalry": "Battle of the Blues",
+  "sport": "college basketball",
+  "confidence": "high",
+  "evidence": "Title and description explicitly state UNC mascot trolling Duke at Duke campus for the UNC vs Duke rivalry (Battle of the Blues). Tags confirm NCAA Basketball context.",
+  "needs_review": false,
+  "notes": "Video location confirmed as Duke campus in description. Year inferred from upload date during peak basketball season."
+}

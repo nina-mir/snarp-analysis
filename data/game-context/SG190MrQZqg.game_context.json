@@ -1,0 +1,19 @@
+{
+  "video_id": "SG190MrQZqg",
+  "year": 2025,
+  "date": null,
+  "featured_team": "Miami",
+  "target_fanbase": "Texas A&M",
+  "home_team": "Texas A&M",
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": "Kyle Field",
+  "video_location_city_state": "College Station, Texas",
+  "game_or_event_label": "CFP Playoffs",
+  "rivalry": null,
+  "sport": "college football",
+  "confidence": "high",
+  "evidence": "Video title and top description state the video is a troll of Texas A&M fans by a Miami fan at Kyle Field during a CFP Playoff event.",
+  "needs_review": false,
+  "notes": "Although the video title claims CFP Playoffs, the specific game context is limited to the interaction at the venue."
+}

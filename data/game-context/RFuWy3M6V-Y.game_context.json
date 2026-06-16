@@ -1,0 +1,19 @@
+{
+  "video_id": "RFuWy3M6V-Y",
+  "year": 2024,
+  "date": null,
+  "featured_team": "Alabama",
+  "target_fanbase": "Kentucky",
+  "home_team": "Kentucky",
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": "University of Kentucky",
+  "video_location_city_state": "Lexington, Kentucky",
+  "game_or_event_label": null,
+  "rivalry": null,
+  "sport": "college basketball",
+  "confidence": "high",
+  "evidence": "Title says Alabama Fan Trolls Kentucky. Description states: I went to Lexington Kentucky and pretended to be an Alabama fan at the University of Kentucky.",
+  "needs_review": false,
+  "notes": "Sport inferred as college basketball based on description context (Kentucky Wildcats Basketball tags) and the nature of the visit to the University of Kentucky campus."
+}

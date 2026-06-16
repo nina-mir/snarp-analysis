@@ -1,0 +1,19 @@
+{
+  "video_id": "ajBT_b3qgDs",
+  "year": 2025,
+  "date": null,
+  "featured_team": "Tennessee",
+  "target_fanbase": "Ohio State",
+  "home_team": "Ohio State",
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": "Ohio Stadium",
+  "video_location_city_state": "Columbus, Ohio",
+  "game_or_event_label": "CFP Playoffs",
+  "rivalry": null,
+  "sport": "college football",
+  "confidence": "high",
+  "evidence": "Title states 'Tennessee Fan Trolls Ohio State (CFP Playoffs)!' and description mentions mission to Ohio Stadium.",
+  "needs_review": false,
+  "notes": "The video metadata mentions 'CFP Playoffs' but there is no scheduled Tennessee vs Ohio State CFP game in the 2024-2025 season; the creator is likely using the term loosely for content engagement."
+}

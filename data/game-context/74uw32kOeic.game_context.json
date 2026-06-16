@@ -1,0 +1,19 @@
+{
+  "video_id": "74uw32kOeic",
+  "year": 2023,
+  "date": null,
+  "featured_team": "Penn State",
+  "target_fanbase": "Ohio State",
+  "home_team": "Ohio State",
+  "away_team": "Penn State",
+  "final_score": null,
+  "video_location_place": "The Ohio State University",
+  "video_location_city_state": "Columbus, Ohio",
+  "game_or_event_label": null,
+  "rivalry": "Penn State vs Ohio State",
+  "sport": "college football",
+  "confidence": "high",
+  "evidence": "Title states Penn State Fan Trolls Ohio State. Description mentions going to Columbus Ohio to pretend to be a Penn State fan at The Ohio State University.",
+  "needs_review": false,
+  "notes": "While the video was uploaded shortly before the 2023 Penn State vs. Ohio State game (Oct 21, 2023), the exact date of filming is not explicitly provided in the metadata."
+}

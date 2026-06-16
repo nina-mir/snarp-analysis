@@ -1,0 +1,19 @@
+{
+  "video_id": "r4gZ3hKBow8",
+  "year": 2024,
+  "date": null,
+  "featured_team": "Tennessee",
+  "target_fanbase": "Georgia",
+  "home_team": "Georgia",
+  "away_team": "Tennessee",
+  "final_score": null,
+  "video_location_place": "Sanford Stadium",
+  "video_location_city_state": "Athens, Georgia",
+  "game_or_event_label": null,
+  "rivalry": null,
+  "sport": "college football",
+  "confidence": "high",
+  "evidence": "Description explicitly states 'mission to Sanford Stadium, home of the Georgia Bulldogs' as a 'Tennessee Volunteers fan'.",
+  "needs_review": false,
+  "notes": "The video was uploaded on 2024-11-23. While it documents a visit to a Tennessee vs Georgia game, the specific date of the game itself is not explicitly provided in the metadata."
+}

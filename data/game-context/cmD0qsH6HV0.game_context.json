@@ -1,0 +1,19 @@
+{
+  "video_id": "cmD0qsH6HV0",
+  "year": 2025,
+  "date": null,
+  "featured_team": "LSU Tigers",
+  "target_fanbase": "Ole Miss Rebels",
+  "home_team": "Ole Miss Rebels",
+  "away_team": "LSU Tigers",
+  "final_score": null,
+  "video_location_place": "University of Mississippi",
+  "video_location_city_state": "Oxford, Mississippi",
+  "game_or_event_label": "Magnolia Bowl",
+  "rivalry": "Magnolia Bowl",
+  "sport": "college football",
+  "confidence": "high",
+  "evidence": "Description states the creator went to Oxford Mississippi to troll Ole Miss fans and explicitly identifies the rivalry as the Magnolia Bowl.",
+  "needs_review": false,
+  "notes": "The video was filmed at the University of Mississippi campus; home team is inferred from the location and the nature of the troll video."
+}

@@ -1,0 +1,19 @@
+{
+  "video_id": "uccImnJZvPg",
+  "year": 2026,
+  "date": null,
+  "featured_team": "Indiana",
+  "target_fanbase": "Purdue",
+  "home_team": null,
+  "away_team": null,
+  "final_score": null,
+  "video_location_place": null,
+  "video_location_city_state": null,
+  "game_or_event_label": null,
+  "rivalry": "Old Oaken Bucket",
+  "sport": "college basketball",
+  "confidence": "medium",
+  "evidence": "Video title is 'Indiana Fan Trolls Purdue!'. Given the upload date is February 2026, it is likely a basketball rivalry game.",
+  "needs_review": false,
+  "notes": "Sport inferred as basketball due to the time of year (February) and the rivalry between Indiana and Purdue. While they also play football, college football is not active in late February."
+}

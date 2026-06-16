@@ -1,0 +1,19 @@
+{
+  "video_id": "qhl0K1qKGQc",
+  "year": 2024,
+  "date": null,
+  "featured_team": "Ohio State",
+  "target_fanbase": "Oregon",
+  "home_team": "Oregon",
+  "away_team": "Ohio State",
+  "final_score": null,
+  "video_location_place": "Eugene",
+  "video_location_city_state": "Eugene, Oregon",
+  "game_or_event_label": null,
+  "rivalry": null,
+  "sport": "college football",
+  "confidence": "high",
+  "evidence": "Title says 'Ohio State Fan Trolls Oregon', description mentions travel to Eugene, Oregon to troll Duck fans.",
+  "needs_review": false,
+  "notes": "Description incorrectly identifies Oregon's stadium as 'Williams-Brice Stadium' (which is actually South Carolina's). I have treated the location as Eugene/Oregon based on the context of the trolling target."
+}

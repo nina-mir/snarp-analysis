@@ -156,14 +156,27 @@ function build() {
   });
 
   // school aggregates (a video credits each of its schools)
+  // const sch = {};
+  // V.forEach(v => v.schools.forEach(s => {
+  //   const o = sch[s] || (sch[s] = { name:s, videos:0, total:0, slur:0, perMinSum:0 });
+  //   o.videos++; o.total += v.total; o.slur += v.slurRace + v.slurSex; o.perMinSum += v.perMin;
+  // }));
+  // const schools = Object.values(sch)
+  //   .map(o => ({ ...o, avgPerMin: o.perMinSum / o.videos }))
+  //   .sort((a, b) => b.total - a.total);
+  // OLD — credited every school the full total (the 1.9× double-count)
+  // V.forEach(v => v.schools.forEach(s => { ... o.total += v.total ... }));
+
   const sch = {};
-  V.forEach(v => v.schools.forEach(s => {
-    const o = sch[s] || (sch[s] = { name:s, videos:0, total:0, slur:0, perMinSum:0 });
-    o.videos++; o.total += v.total; o.slur += v.slurRace + v.slurSex; o.perMinSum += v.perMin;
-  }));
+  V.forEach(v => {
+    const s = v.target;            // <-- target gets the curses; troll gets nothing
+    if (!s) return;                // null-target compilations skip the board
+    const o = sch[s] || (sch[s] = { name:s, videos:0, total:0, slur:0, minutes:0 });
+    o.videos++; o.total += v.total; o.slur += v.slurRace + v.slurSex; o.minutes += v.minutes;
+  });
   const schools = Object.values(sch)
-    .map(o => ({ ...o, avgPerMin: o.perMinSum / o.videos }))
-    .sort((a, b) => b.total - a.total);
+    .map(o => ({ ...o, avgPerMin: +(o.total / o.minutes).toFixed(2) }))  // pooled rate
+    .sort((a, b) => b.avgPerMin - a.avgPerMin);
 
   // slur incidents
   const incidents = V.filter(v => v.slurRace + v.slurSex > 0).map(v => {
