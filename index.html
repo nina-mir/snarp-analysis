@@ -146,11 +146,42 @@
   .loaderr p{ font-size:13px; line-height:1.7; color:#4a4438; }
   .loaderr code{ background:var(--bg); padding:1px 5px; border-radius:3px; }
 
+  /* fluid headline scales smoothly instead of jumping at a breakpoint */
+  h1{ font-size:clamp(40px, 11vw, 78px); }
+
+  @media (max-width:860px){
+    .wrap{ padding:0 20px 64px; }
+    /* ranking header: stack title over controls, left-align */
+    .rank-head{ flex-direction:column; align-items:stretch; gap:12px; }
+    .controls{ align-items:flex-start; }
+  }
+
   @media (max-width:720px){
-    h1{ font-size:48px; } .stats{ grid-template-columns:repeat(2,1fr); }
-    .row{ grid-template-columns:24px 1fr 70px; } .row .bar{ display:none; }
-    .prog{ grid-template-columns:1fr 60px; } .prog .track{ display:none; }
-    .kwic{ grid-template-columns:50px 1fr; } .kwic .vid{ display:none; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .stat .num{ font-size:32px; }
+    h2{ font-size:26px; }
+    .kicker{ flex-direction:column; align-items:flex-start; gap:4px; }
+    /* ranking: drop the inline bar, keep rank · title · rate */
+    .row{ grid-template-columns:22px 1fr auto; gap:10px; }
+    .row .bar{ display:none; }
+    .prog{ grid-template-columns:1fr auto auto; gap:10px; }
+    .prog .track{ display:none; }
+    .kwic{ grid-template-columns:52px 1fr; gap:10px; }
+    .kwic .vid{ display:none; }
+    .incidents{ grid-template-columns:1fr; }
+    .lex{ grid-template-columns:repeat(2,1fr); gap:16px; }
+    footer{ flex-direction:column; gap:6px; }
+    .drawer{ width:100%; padding:24px 20px 44px; }
+  }
+
+  @media (max-width:430px){
+    .wrap{ padding:0 14px 56px; }
+    .stats{ grid-template-columns:1fr 1fr; }
+    .stat{ padding:12px 14px; } .stat .num{ font-size:28px; }
+    .lex{ grid-template-columns:1fr; }
+    .d-stats{ grid-template-columns:repeat(2,1fr); }
+    .prog{ grid-template-columns:1fr auto; }
+    .prog .val:last-child{ display:none; } /* hide /min, keep total on tiny screens */
   }
 </style>
 </head>
