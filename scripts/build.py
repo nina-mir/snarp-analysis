@@ -30,6 +30,7 @@ ROOT       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA       = os.path.join(ROOT, "data")
 OTHER      = os.path.join(DATA, "other-data")
 TRANSCRIPTS= os.path.join(DATA, "transcripts")
+GAMECTX    = os.path.join(DATA, "game-context")
 BUILD      = os.path.join(ROOT, "build")
 
 SHAPE_MD   = os.path.join(OTHER, "data_shape_snarp.md")
@@ -48,35 +49,6 @@ GRAN_KEYS = [
     "identity_slur_race", "identity_slur_sexuality", "identity_context_needed",
 ]
 
-
-CANON = {
-    "Alabama":"Alabama", "Auburn":"Auburn", "BYU":"BYU", "Cincinnati":"Cincinnati",
-    "Clemson":"Clemson", "Colorado Buffaloes":"Colorado",
-    "Duke":"Duke", "Duke Blue Devils":"Duke",
-    "Florida":"Florida", "Florida Gators":"Florida", "Florida State Seminoles":"Florida State",
-    "Georgia":"Georgia", "Houston Cougars":"Houston", "Illinois":"Illinois", "Indiana":"Indiana",
-    "Iowa Hawkeyes":"Iowa", "Iowa State Cyclones":"Iowa State", "Kentucky":"Kentucky",
-    "LSU":"LSU", "LSU Tigers":"LSU",
-    "Miami":"Miami", "Miami Hurricanes":"Miami",
-    "Michigan":"Michigan", "Michigan Wolverines":"Michigan", "Michigan State":"Michigan State",
-    "NC State":"NC State",
-    "North Carolina":"North Carolina", "North Carolina Tar Heels":"North Carolina", "UNC":"North Carolina",
-    "Notre Dame":"Notre Dame",
-    "Ohio State":"Ohio State", "Ohio State Buckeyes":"Ohio State",
-    "Oklahoma Sooners":"Oklahoma", "Ole Miss":"Ole Miss", "Ole Miss Rebels":"Ole Miss",
-    "Oregon":"Oregon", "Penn State":"Penn State", "Pittsburgh Panthers":"Pitt", "Purdue":"Purdue",
-    "South Carolina Gamecocks":"South Carolina",
-    "Tennessee":"Tennessee", "Tennessee Volunteers":"Tennessee",
-    "Texas A&M":"Texas A&M", "Texas Longhorns":"Texas",
-    "UConn":"UConn", "USC":"USC", "West Virginia Mountaineers":"West Virginia", "Wisconsin":"Wisconsin",
-}
-
-def norm_school(name):
-    if name is None:
-        return None
-    if name not in CANON:                       # loud failure, not silent pass-through
-        raise KeyError(f"UNMAPPED school name from game-context: {name!r} — add it to CANON")
-    return CANON[name]
 
 def unescape_md(s):
     """Undo markdown backslash-escaping (e.g. 'video\\_id' -> 'video_id')."""
@@ -132,6 +104,56 @@ def parse_granularity(path):
     return blocks
 
 
+# --- team-name normalization ---------------------------------------------
+# game-context spells teams inconsistently ("Michigan" vs "Michigan Wolverines",
+# "Pittsburgh Panthers" vs the schools column's "Pitt"). Collapse each to one
+# canonical school so the troll/target dumbbell doesn't split a program into
+# several near-identical buckets.
+MASCOTS = {
+    "wolverines", "buckeyes", "rebels", "volunteers", "sooners", "tigers",
+    "cougars", "panthers", "mountaineers", "hawkeyes", "cyclones", "buffaloes",
+    "gators", "seminoles", "hurricanes", "gamecocks", "longhorns",
+}
+TWO_WORD_MASCOTS = ("tar heels", "blue devils")
+ALIAS = {"Pittsburgh": "Pitt", "UNC": "North Carolina"}
+
+
+def norm_team(name):
+    """'Michigan Wolverines' -> 'Michigan', 'Pittsburgh Panthers' -> 'Pitt'."""
+    if not name:
+        return None
+    n = name.strip()
+    low = n.lower()
+    for m in TWO_WORD_MASCOTS:
+        if low.endswith(" " + m):
+            n = n[: -(len(m) + 1)].strip()
+            break
+    parts = n.split()
+    if len(parts) > 1 and parts[-1].lower() in MASCOTS:
+        n = " ".join(parts[:-1])
+    return ALIAS.get(n, n)
+
+
+def parse_game_context(folder):
+    """Read every *.game_context.json -> {video_id: {troll, target}} (normalized)."""
+    out = {}
+    for fp in sorted(glob.glob(os.path.join(folder, "*.json"))):
+        try:
+            with open(fp, encoding="utf-8") as f:
+                j = json.load(f)
+        except Exception as e:
+            print(f"  ! skipped {os.path.basename(fp)}: {e}")
+            continue
+        vid = j.get("video_id")
+        if not vid:
+            continue
+        out[vid] = {
+            "troll": norm_team(j.get("featured_team")),
+            "target": norm_team(j.get("target_fanbase")),
+        }
+    return out
+
+
 def parse_transcripts(folder):
     """Read every transcript JSON -> {video_id: {duration, title, segments:[{s,e,t}]}}."""
     out = {}
@@ -159,23 +181,6 @@ def parse_transcripts(folder):
     return out
 
 
-GAMECTX = os.path.join(DATA, "game-context")   # *_game_context.json live here
-
-def load_game_context(folder):
-    ctx = {}
-    for fp in glob.glob(os.path.join(folder, "*.game_context.json")):
-        j = json.load(open(fp, encoding="utf-8"))
-        ctx[j["video_id"]] = {
-            "troll":  norm_school(j.get("featured_team")),
-            "target": norm_school(j.get("target_fanbase")),
-            "sport":  j.get("sport"),
-            "year":   j.get("year"),
-            "event":  j.get("game_or_event_label"),
-            "place":  j.get("video_location_city_state"),
-            "review": bool(j.get("needs_review")) or j.get("confidence") != "high",
-        }
-    return ctx
-
 def main():
     videos_by_idx = parse_shape(SHAPE_MD)
     blocks = parse_granularity(GRAN_TXT)
@@ -185,23 +190,16 @@ def main():
             videos_by_idx[i]["terms"] = terms
     videos = [videos_by_idx[k] for k in sorted(videos_by_idx)]
 
-    ctx = load_game_context(GAMECTX)
-    for v in videos:
-        c = ctx.get(v["id"], {})
-        v["troll"]  = c.get("troll")
-        v["target"] = c.get("target")
-        v["sport"]  = c.get("sport")
-        v["year"]   = c.get("year")
-        v["event"]  = c.get("event")
-        v["place"]  = c.get("place")
-        v["review"] = c.get("review", True)
-        # display list, in "troll → target" order, deduped, nulls dropped
-        v["schools"] = [s for s in dict.fromkeys([v["troll"], v["target"]]) if s]
-    missing = [v["id"] for v in videos if v["id"] not in ctx]
-    if missing:
-        print("  ! no game-context for:", missing)
-
     transcripts = parse_transcripts(TRANSCRIPTS)
+
+    # attach troll-side / target-side school from game-context (drives the
+    # "By Program" dumbbell). Compilations with no featured matchup stay null.
+    gamectx = parse_game_context(GAMECTX)
+    for v in videos:
+        ctx = gamectx.get(v["id"], {})
+        v["troll"] = ctx.get("troll")
+        v["target"] = ctx.get("target")
+    have_ctx = sum(1 for v in videos if v.get("troll") or v.get("target"))
 
     os.makedirs(BUILD, exist_ok=True)
     out_path = os.path.join(BUILD, "snarp-data.json")
@@ -213,6 +211,7 @@ def main():
     print(f"Wrote {out_path}")
     print(f"  videos:      {len(videos)}")
     print(f"  transcripts: {len(transcripts)}  ({have}/{len(videos)} videos have one)")
+    print(f"  game-context: {have_ctx}/{len(videos)} videos have a troll/target matchup")
 
 
 if __name__ == "__main__":

@@ -71,11 +71,11 @@ function showLoadError() {
 /* Resolve censored spellings (f**k, f***) back to a canonical word so the
    lexicon doesn't split one term across many asterisk variants. */
 const CANON_WORDS = [
-  "motherfucking","motherfuckers","motherfucker","fuckhole","fucking","fuckers",
-  "fucked","fucker","fucks","fuck","bullshits","bullshit","shitty","shits","shit",
-  "assholes","asshole","bitches","bitching","bitch","dickheads","dickhead","dicks",
-  "dick","pussies","pussy","asses","ass","crap","damn","hell","piss","sucks","suck",
-  "gay","faggots","faggot","fags","fag","niggas","nigga","niggers","nigger",
+  "motherfucking", "motherfuckers", "motherfucker", "fuckhole", "fucking", "fuckers",
+  "fucked", "fucker", "fucks", "fuck", "bullshits", "bullshit", "shitty", "shits", "shit",
+  "assholes", "asshole", "bitches", "bitching", "bitch", "dickheads", "dickhead", "dicks",
+  "dick", "pussies", "pussy", "asses", "ass", "crap", "damn", "hell", "piss", "sucks", "suck",
+  "gay", "faggots", "faggot", "fags", "fag", "niggas", "nigga", "niggers", "nigger",
 ];
 function canon(term) {
   const t = String(term).toLowerCase().trim();
@@ -95,7 +95,7 @@ function build() {
   const V = DATA.videos;
 
   // tier totals across all videos
-  const totals = { mild:0, strong:0, severe:0, slurRace:0, slurSex:0, context:0 };
+  const totals = { mild: 0, strong: 0, severe: 0, slurRace: 0, slurSex: 0, context: 0 };
   V.forEach(v => {
     totals.mild += v.mild; totals.strong += v.strong; totals.severe += v.severe;
     totals.slurRace += v.slurRace; totals.slurSex += v.slurSex; totals.context += v.context;
@@ -108,9 +108,9 @@ function build() {
 
   // aggregate the term breakdown into a per-tier lexicon, and remember each
   // word's highest-severity tier + which videos contain it
-  const agg = { mild:{}, strong:{}, severe:{}, slurRace:{}, slurSex:{}, context:{} };
+  const agg = { mild: {}, strong: {}, severe: {}, slurRace: {}, slurSex: {}, context: {} };
   const vocabTier = {};
-  const sev = { severe:6, slurRace:5, slurSex:4, strong:3, mild:2, context:1 };
+  const sev = { severe: 6, slurRace: 5, slurSex: 4, strong: 3, mild: 2, context: 1 };
   V.forEach(v => {
     const set = new Set();
     Object.entries(v.terms || {}).forEach(([cat, obj]) => {
@@ -167,16 +167,38 @@ function build() {
   // OLD — credited every school the full total (the 1.9× double-count)
   // V.forEach(v => v.schools.forEach(s => { ... o.total += v.total ... }));
 
+  // split each video's curses into a troll-side and a target-side bucket;
+  // a school can land on either side, or both. compilations (null troll AND
+  // null target) never get bucketed, so they stay off the board.
   const sch = {};
-  V.forEach(v => {
-    const s = v.target;            // <-- target gets the curses; troll gets nothing
-    if (!s) return;                // null-target compilations skip the board
-    const o = sch[s] || (sch[s] = { name:s, videos:0, total:0, slur:0, minutes:0 });
-    o.videos++; o.total += v.total; o.slur += v.slurRace + v.slurSex; o.minutes += v.minutes;
+  const bucket = name => (sch[name] || (sch[name] = { name, troll: null, target: null, slur: 0 }));
+  const add = (side, name, v) => {
+    if (!name) return;
+    const o = bucket(name);
+    const b = o[side] || (o[side] = { videos: 0, total: 0, minutes: 0 });
+    b.videos++; b.total += v.total; b.minutes += v.minutes;
+    o.slur += v.slurRace + v.slurSex;
+  };
+  V.forEach(v => { add("troll", v.troll, v); add("target", v.target, v); });
+
+  const rate = b => b ? +(b.total / b.minutes).toFixed(2) : null;  // pooled rate
+  const schools = Object.values(sch).map(o => {
+    const tr = rate(o.troll), tg = rate(o.target);
+    return {
+      name: o.name, slur: o.slur,
+      troll: o.troll ? { rate: tr, videos: o.troll.videos } : null,
+      target: o.target ? { rate: tg, videos: o.target.videos } : null,
+      twoSided: tr != null && tg != null,
+      gap: (tr != null && tg != null) ? Math.abs(tr - tg) : null,
+      soloRate: tr != null ? tr : tg,
+    };
   });
-  const schools = Object.values(sch)
-    .map(o => ({ ...o, avgPerMin: +(o.total / o.minutes).toFixed(2) }))  // pooled rate
-    .sort((a, b) => b.avgPerMin - a.avgPerMin);
+  schools.sort((a, b) =>
+    a.twoSided !== b.twoSided ? (a.twoSided ? -1 : 1)
+      : a.twoSided ? b.gap - a.gap
+        : b.soloRate - a.soloRate
+  );
+
 
   // slur incidents
   const incidents = V.filter(v => v.slurRace + v.slurSex > 0).map(v => {
@@ -195,9 +217,9 @@ function build() {
 /* ==========================================================================
    3. RENDER — small helpers
    ========================================================================== */
-const $  = sel => document.querySelector(sel);
-const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
-const yt  = (id, sec) => "https://www.youtube.com/watch?v=" + id + (sec != null ? "&t=" + Math.max(0, Math.floor(sec) - 1) + "s" : "");
+const $ = sel => document.querySelector(sel);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const yt = (id, sec) => "https://www.youtube.com/watch?v=" + id + (sec != null ? "&t=" + Math.max(0, Math.floor(sec) - 1) + "s" : "");
 const mmss = sec => Math.floor(sec / 60) + ":" + String(Math.floor(sec % 60)).padStart(2, "0");
 const byIdx = idx => DATA.videos.find(v => v.idx === idx);
 
@@ -236,7 +258,7 @@ const SORT_FN = {
   perMin: v => v.perMin, total: v => v.total, severe: v => v.severe,
   minutes: v => v.minutes, slurs: v => (v.slurRace + v.slurSex) * 100 + v.context,
 };
-const SEG_TIERS = [["mild","mild"],["strong","strong"],["severe","severe"],["slurRace","slurRace"],["slurSex","slurSex"],["context","context"]];
+const SEG_TIERS = [["mild", "mild"], ["strong", "strong"], ["severe", "severe"], ["slurRace", "slurRace"], ["slurSex", "slurSex"], ["context", "context"]];
 
 function renderRanking() {
   // sort controls
@@ -248,8 +270,8 @@ function renderRanking() {
   // active-term filter bar
   $("#filter-bar").innerHTML = state.activeTerm
     ? `<div class="filterbar"><span class="lab">filtered to videos containing</span>` +
-      `<span class="chip">${esc(state.activeTerm)}</span>` +
-      `<button class="clearbtn" id="clear-filter">clear ✕</button></div>`
+    `<span class="chip">${esc(state.activeTerm)}</span>` +
+    `<button class="clearbtn" id="clear-filter">clear ✕</button></div>`
     : "";
 
   const sorted = [...DATA.videos].sort((a, b) => SORT_FN[state.sortKey](b) - SORT_FN[state.sortKey](a));
@@ -299,20 +321,65 @@ function renderLexicon() {
 }
 
 /* ---- programs ------------------------------------------------------------ */
-function renderPrograms() {
-  const max = Math.max(...COMPUTED.schools.map(o => o.total));
-  $("#programs").innerHTML = COMPUTED.schools.map(o => `
-    <div class="prog">
-      <div>
-        <div class="name">${esc(o.name)}${o.slur > 0 ? '<span class="dot"></span>' : ""}</div>
-        <div class="vids">${o.videos} videos</div>
-      </div>
-      <div class="track"><span style="width:${(o.total / max) * 100}%"></span></div>
-      <div class="val">${o.total}<small> curses</small></div>
-      <div class="val">${o.avgPerMin.toFixed(2)}<small>/min</small></div>
-    </div>`).join("");
-}
+/* ---- programs (troll-side vs target-side dumbbell) ----------------------- */
+const PROG = { troll: "#2f7ab8", target: "#c4351c" };  // swap the two hexes to taste
 
+function renderPrograms() {
+  const S = COMPUTED.schools;
+  const rates = [];
+  S.forEach(o => { if (o.troll) rates.push(o.troll.rate); if (o.target) rates.push(o.target.rate); });
+  const MAX = Math.max(2, Math.ceil(Math.max(...rates)));
+
+  const W = 680, X0 = 176, X1 = 660, PW = X1 - X0;
+  const y0 = 8, rh = 25, H = y0 + S.length * rh + 28;
+  const x = r => X0 + (r / MAX) * PW;
+  const rad = n => 3 + Math.min(n, 6);
+  const fmt = r => r.toFixed(2);
+  const MONO = "IBM Plex Mono, monospace";
+
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Troll-side vs target-side profanity rate per minute by school">`;
+
+  for (let g = 0; g <= MAX; g += 2) {
+    const gx = x(g);
+    s += `<line x1="${gx}" x2="${gx}" y1="${y0}" y2="${y0 + S.length * rh}" stroke="rgba(0,0,0,.08)"/>`;
+    s += `<text x="${gx}" y="${y0 + S.length * rh + 16}" text-anchor="middle" font-size="11" fill="#948a7a" font-family="${MONO}">${g}</text>`;
+  }
+
+  S.forEach((o, i) => {
+    const cy = y0 + i * rh + rh / 2;
+    s += `<text x="124" y="${cy + 4}" text-anchor="end" font-size="12" fill="#2c2a25">${esc(o.name)}${o.slur > 0 ? '<tspan fill="#79386f"> &#8226;</tspan>' : ""}</text>`;
+
+    const pts = [];
+    if (o.troll)  pts.push({ x: x(o.troll.rate),  r: rad(o.troll.videos),  c: PROG.troll,  rate: o.troll.rate,  n: o.troll.videos,  side: "troll-side" });
+    if (o.target) pts.push({ x: x(o.target.rate), r: rad(o.target.videos), c: PROG.target, rate: o.target.rate, n: o.target.videos, side: "target-side" });
+
+    if (pts.length === 2) {
+      const lo = pts[0].x <= pts[1].x ? pts[0] : pts[1];
+      const hi = pts[0].x <= pts[1].x ? pts[1] : pts[0];
+      s += `<line x1="${lo.x}" x2="${hi.x}" y1="${cy}" y2="${cy}" stroke="#d8d2c4" stroke-width="2"/>`;
+      s += `<text x="${lo.x - lo.r - 5}" y="${cy + 4}" text-anchor="end"   font-size="11" fill="${lo.c}" font-family="${MONO}">${fmt(lo.rate)}</text>`;
+      s += `<text x="${hi.x + hi.r + 5}" y="${cy + 4}" text-anchor="start" font-size="11" fill="${hi.c}" font-family="${MONO}">${fmt(hi.rate)}</text>`;
+    } else {
+      const p = pts[0];
+      s += `<text x="${p.x + p.r + 5}" y="${cy + 4}" text-anchor="start" font-size="11" fill="${p.c}" font-family="${MONO}">${fmt(p.rate)}</text>`;
+    }
+
+    pts.forEach(p => {
+      s += `<circle cx="${p.x}" cy="${cy}" r="${p.r}" fill="${p.c}"><title>${esc(o.name)} ${p.side}: ${fmt(p.rate)}/min across ${p.n} video${p.n > 1 ? "s" : ""}</title></circle>`;
+    });
+  });
+
+  s += "</svg>";
+
+  const legend =
+    '<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:0 0 10px;font-size:12px;color:#6b6459">' +
+      `<span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:${PROG.troll}"></span>troll-side rate</span>` +
+      `<span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:${PROG.target}"></span>target-side rate</span>` +
+      '<span>dot size = videos · sorted by gap</span>' +
+    "</div>";
+
+  $("#programs").innerHTML = `<div>${legend}${s}</div>`;
+}
 /* ---- incidents ----------------------------------------------------------- */
 function renderIncidents() {
   $("#incidents").innerHTML = COMPUTED.incidents.map(({ v, terms }) => {
@@ -366,7 +433,7 @@ function renderSearch() {
 /* ==========================================================================
    4. DRAWER — per-video detail
    ========================================================================== */
-const TIMELINE_H = { severe:30, strong:22, mild:14, slurRace:34, slurSex:34, context:10 };
+const TIMELINE_H = { severe: 30, strong: 22, mild: 14, slurRace: 34, slurSex: 34, context: 10 };
 
 function buildTimelineSVG(v) {
   const tr = DATA.transcripts[v.id];
