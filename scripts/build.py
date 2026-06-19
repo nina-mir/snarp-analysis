@@ -199,6 +199,7 @@ def main():
         ctx = gamectx.get(v["id"], {})
         v["troll"] = ctx.get("troll")
         v["target"] = ctx.get("target")
+        v["schools"] = [t for t in dict.fromkeys([v["troll"], v["target"]]) if t]
     have_ctx = sum(1 for v in videos if v.get("troll") or v.get("target"))
 
     os.makedirs(BUILD, exist_ok=True)
